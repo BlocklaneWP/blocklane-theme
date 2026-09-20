@@ -1,0 +1,19 @@
+/*
+ * core/table — tokenize the core "Stripes" style.
+ *
+ * Core hard-codes the stripe background and bottom border (#f0f0f0),
+ * which ignores the palette. Pin both to tokens so striped tables follow
+ * this theme's `subtle`/`outline` roles — and so any custom theme system
+ * with its own `subtle` inherits the right stripe color by default.
+ */
+/* Fallback chain: `subtle` when the palette defines the role, the palette's
+ * gray-50 otherwise, core's own stripe gray as the last resort — a bare
+ * var() clobbered core's default and killed striping wherever the role
+ * token was absent (live-caught on the pricing tables). */
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+	background-color: var(--wp--preset--color--subtle, var(--wp--preset--color--gray-50, #f0f0f0));
+}
+
+.wp-block-table.is-style-stripes {
+	border-bottom-color: var(--wp--preset--color--outline, var(--wp--preset--color--gray-200, #f0f0f0));
+}

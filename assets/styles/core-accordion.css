@@ -1,0 +1,9 @@
+/* Card — faq02-style card accordions: rounded items that gain the
+   gray-50 surface while expanded. State styling has no block-attribute
+   representation, so it lives here. */
+.wp-block-accordion.is-style-card .wp-block-accordion-item {
+	border-radius: 1rem;
+}
+.wp-block-accordion.is-style-card .wp-block-accordion-item:has(.wp-block-accordion-heading__toggle[aria-expanded="true"]) {
+	background-color: var(--wp--preset--color--gray-50, #f9fafb);
+}

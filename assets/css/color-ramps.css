@@ -1,0 +1,389 @@
+/**
+ * GENERATED FILE — do not edit by hand.
+ * Source: assets/design-tokens/ramps.json
+ * Build:  node tools/build-color-ramps.mjs
+ *
+ * The theme's under-the-hood color ramps: fixed neutrals/status literals and
+ * brand ramps derived live from the palette roles via color-mix(). See the
+ * generator header for the full design rationale.
+ */
+
+body {
+	--wp--preset--color--white: #ffffff;
+	--wp--preset--color--gray-25: #fcfcfd;
+	--wp--preset--color--gray-50: #f9fafb;
+	--wp--preset--color--gray-100: #f2f4f7;
+	--wp--preset--color--gray-200: #eaecf0;
+	--wp--preset--color--gray-300: #d0d5dd;
+	--wp--preset--color--gray-400: #98a2b3;
+	--wp--preset--color--gray-500: #667085;
+	--wp--preset--color--gray-600: #475467;
+	--wp--preset--color--gray-700: #344054;
+	--wp--preset--color--gray-800: #1d2939;
+	--wp--preset--color--gray-900: #101828;
+	--wp--preset--color--error-25: #fffbfa;
+	--wp--preset--color--error-50: #fef3f2;
+	--wp--preset--color--error-100: #fee4e2;
+	--wp--preset--color--error-200: #fecdca;
+	--wp--preset--color--error-300: #fda29b;
+	--wp--preset--color--error-400: #f97066;
+	--wp--preset--color--error-500: #f04438;
+	--wp--preset--color--error-600: #d92d20;
+	--wp--preset--color--error-700: #b42318;
+	--wp--preset--color--error-800: #912018;
+	--wp--preset--color--error-900: #7a271a;
+	--wp--preset--color--warning-25: #fffcf5;
+	--wp--preset--color--warning-50: #fffaeb;
+	--wp--preset--color--warning-100: #fef0c7;
+	--wp--preset--color--warning-200: #fedf89;
+	--wp--preset--color--warning-300: #fec84b;
+	--wp--preset--color--warning-400: #fdb022;
+	--wp--preset--color--warning-500: #f79009;
+	--wp--preset--color--warning-600: #dc6803;
+	--wp--preset--color--warning-700: #b54708;
+	--wp--preset--color--warning-800: #93370d;
+	--wp--preset--color--warning-900: #7a2e0e;
+	--wp--preset--color--success-25: #f6fef9;
+	--wp--preset--color--success-50: #ecfdf3;
+	--wp--preset--color--success-100: #d1fadf;
+	--wp--preset--color--success-200: #a6f4c5;
+	--wp--preset--color--success-300: #6ce9a6;
+	--wp--preset--color--success-400: #32d583;
+	--wp--preset--color--success-500: #12b76a;
+	--wp--preset--color--success-600: #039855;
+	--wp--preset--color--success-700: #027a48;
+	--wp--preset--color--success-800: #05603a;
+	--wp--preset--color--success-900: #054f31;
+	--wp--preset--color--blue-50: #eff8ff;
+	--wp--preset--color--blue-500: #2e90fa;
+	--wp--preset--color--blue-700: #175cd3;
+	--wp--preset--color--pink-50: #fdf2fa;
+	--wp--preset--color--pink-500: #ee46bc;
+	--wp--preset--color--pink-700: #c11574;
+	--wp--preset--color--indigo-50: #eef4ff;
+	--wp--preset--color--indigo-500: #6172f3;
+	--wp--preset--color--indigo-700: #3538cd;
+	--wp--preset--color--orange-50: #fef6ee;
+	--wp--preset--color--orange-500: #ef6820;
+	--wp--preset--color--orange-700: #b93815;
+	--wp--preset--color--lime-50: #f1fdd8;
+	--wp--preset--color--lime-300: #d5ff45;
+	--wp--preset--color--lime-500: #94b413;
+	--wp--preset--color--lime-700: #586d00;
+	--wp--preset--color--primary-25: color-mix(in oklab, var(--wp--preset--color--primary), white 97%);
+	--wp--preset--color--primary-50: color-mix(in oklab, var(--wp--preset--color--primary), white 94%);
+	--wp--preset--color--primary-100: color-mix(in oklab, var(--wp--preset--color--primary), white 89%);
+	--wp--preset--color--primary-200: color-mix(in oklab, var(--wp--preset--color--primary), white 77%);
+	--wp--preset--color--primary-300: color-mix(in oklab, var(--wp--preset--color--primary), white 61%);
+	--wp--preset--color--primary-400: color-mix(in oklab, var(--wp--preset--color--primary), white 36%);
+	--wp--preset--color--primary-500: color-mix(in oklab, var(--wp--preset--color--primary), white 20%);
+	--wp--preset--color--primary-600: var(--wp--preset--color--primary);
+	--wp--preset--color--primary-700: color-mix(in oklab, var(--wp--preset--color--primary), black 10%);
+	--wp--preset--color--primary-800: color-mix(in oklab, var(--wp--preset--color--primary), black 23%);
+	--wp--preset--color--primary-900: color-mix(in oklab, var(--wp--preset--color--primary), black 34%);
+	--wp--preset--color--secondary-25: color-mix(in oklab, var(--wp--preset--color--secondary), white 97%);
+	--wp--preset--color--secondary-50: color-mix(in oklab, var(--wp--preset--color--secondary), white 94%);
+	--wp--preset--color--secondary-100: color-mix(in oklab, var(--wp--preset--color--secondary), white 89%);
+	--wp--preset--color--secondary-200: color-mix(in oklab, var(--wp--preset--color--secondary), white 77%);
+	--wp--preset--color--secondary-300: color-mix(in oklab, var(--wp--preset--color--secondary), white 61%);
+	--wp--preset--color--secondary-400: color-mix(in oklab, var(--wp--preset--color--secondary), white 36%);
+	--wp--preset--color--secondary-500: color-mix(in oklab, var(--wp--preset--color--secondary), white 20%);
+	--wp--preset--color--secondary-600: var(--wp--preset--color--secondary);
+	--wp--preset--color--secondary-700: color-mix(in oklab, var(--wp--preset--color--secondary), black 10%);
+	--wp--preset--color--secondary-800: color-mix(in oklab, var(--wp--preset--color--secondary), black 23%);
+	--wp--preset--color--secondary-900: color-mix(in oklab, var(--wp--preset--color--secondary), black 34%);
+	--wp--preset--color--accent-25: color-mix(in oklab, var(--wp--preset--color--accent), white 97%);
+	--wp--preset--color--accent-50: color-mix(in oklab, var(--wp--preset--color--accent), white 94%);
+	--wp--preset--color--accent-100: color-mix(in oklab, var(--wp--preset--color--accent), white 89%);
+	--wp--preset--color--accent-200: color-mix(in oklab, var(--wp--preset--color--accent), white 77%);
+	--wp--preset--color--accent-300: color-mix(in oklab, var(--wp--preset--color--accent), white 61%);
+	--wp--preset--color--accent-400: color-mix(in oklab, var(--wp--preset--color--accent), white 36%);
+	--wp--preset--color--accent-500: color-mix(in oklab, var(--wp--preset--color--accent), white 20%);
+	--wp--preset--color--accent-600: var(--wp--preset--color--accent);
+	--wp--preset--color--accent-700: color-mix(in oklab, var(--wp--preset--color--accent), black 10%);
+	--wp--preset--color--accent-800: color-mix(in oklab, var(--wp--preset--color--accent), black 23%);
+	--wp--preset--color--accent-900: color-mix(in oklab, var(--wp--preset--color--accent), black 34%);
+}
+
+.has-white-color { color: var(--wp--preset--color--white) !important; }
+.has-white-background-color { background-color: var(--wp--preset--color--white) !important; }
+.has-white-border-color { border-color: var(--wp--preset--color--white) !important; }
+.has-gray-25-color { color: var(--wp--preset--color--gray-25) !important; }
+.has-gray-25-background-color { background-color: var(--wp--preset--color--gray-25) !important; }
+.has-gray-25-border-color { border-color: var(--wp--preset--color--gray-25) !important; }
+.has-gray-50-color { color: var(--wp--preset--color--gray-50) !important; }
+.has-gray-50-background-color { background-color: var(--wp--preset--color--gray-50) !important; }
+.has-gray-50-border-color { border-color: var(--wp--preset--color--gray-50) !important; }
+.has-gray-100-color { color: var(--wp--preset--color--gray-100) !important; }
+.has-gray-100-background-color { background-color: var(--wp--preset--color--gray-100) !important; }
+.has-gray-100-border-color { border-color: var(--wp--preset--color--gray-100) !important; }
+.has-gray-200-color { color: var(--wp--preset--color--gray-200) !important; }
+.has-gray-200-background-color { background-color: var(--wp--preset--color--gray-200) !important; }
+.has-gray-200-border-color { border-color: var(--wp--preset--color--gray-200) !important; }
+.has-gray-300-color { color: var(--wp--preset--color--gray-300) !important; }
+.has-gray-300-background-color { background-color: var(--wp--preset--color--gray-300) !important; }
+.has-gray-300-border-color { border-color: var(--wp--preset--color--gray-300) !important; }
+.has-gray-400-color { color: var(--wp--preset--color--gray-400) !important; }
+.has-gray-400-background-color { background-color: var(--wp--preset--color--gray-400) !important; }
+.has-gray-400-border-color { border-color: var(--wp--preset--color--gray-400) !important; }
+.has-gray-500-color { color: var(--wp--preset--color--gray-500) !important; }
+.has-gray-500-background-color { background-color: var(--wp--preset--color--gray-500) !important; }
+.has-gray-500-border-color { border-color: var(--wp--preset--color--gray-500) !important; }
+.has-gray-600-color { color: var(--wp--preset--color--gray-600) !important; }
+.has-gray-600-background-color { background-color: var(--wp--preset--color--gray-600) !important; }
+.has-gray-600-border-color { border-color: var(--wp--preset--color--gray-600) !important; }
+.has-gray-700-color { color: var(--wp--preset--color--gray-700) !important; }
+.has-gray-700-background-color { background-color: var(--wp--preset--color--gray-700) !important; }
+.has-gray-700-border-color { border-color: var(--wp--preset--color--gray-700) !important; }
+.has-gray-800-color { color: var(--wp--preset--color--gray-800) !important; }
+.has-gray-800-background-color { background-color: var(--wp--preset--color--gray-800) !important; }
+.has-gray-800-border-color { border-color: var(--wp--preset--color--gray-800) !important; }
+.has-gray-900-color { color: var(--wp--preset--color--gray-900) !important; }
+.has-gray-900-background-color { background-color: var(--wp--preset--color--gray-900) !important; }
+.has-gray-900-border-color { border-color: var(--wp--preset--color--gray-900) !important; }
+.has-error-25-color { color: var(--wp--preset--color--error-25) !important; }
+.has-error-25-background-color { background-color: var(--wp--preset--color--error-25) !important; }
+.has-error-25-border-color { border-color: var(--wp--preset--color--error-25) !important; }
+.has-error-50-color { color: var(--wp--preset--color--error-50) !important; }
+.has-error-50-background-color { background-color: var(--wp--preset--color--error-50) !important; }
+.has-error-50-border-color { border-color: var(--wp--preset--color--error-50) !important; }
+.has-error-100-color { color: var(--wp--preset--color--error-100) !important; }
+.has-error-100-background-color { background-color: var(--wp--preset--color--error-100) !important; }
+.has-error-100-border-color { border-color: var(--wp--preset--color--error-100) !important; }
+.has-error-200-color { color: var(--wp--preset--color--error-200) !important; }
+.has-error-200-background-color { background-color: var(--wp--preset--color--error-200) !important; }
+.has-error-200-border-color { border-color: var(--wp--preset--color--error-200) !important; }
+.has-error-300-color { color: var(--wp--preset--color--error-300) !important; }
+.has-error-300-background-color { background-color: var(--wp--preset--color--error-300) !important; }
+.has-error-300-border-color { border-color: var(--wp--preset--color--error-300) !important; }
+.has-error-400-color { color: var(--wp--preset--color--error-400) !important; }
+.has-error-400-background-color { background-color: var(--wp--preset--color--error-400) !important; }
+.has-error-400-border-color { border-color: var(--wp--preset--color--error-400) !important; }
+.has-error-500-color { color: var(--wp--preset--color--error-500) !important; }
+.has-error-500-background-color { background-color: var(--wp--preset--color--error-500) !important; }
+.has-error-500-border-color { border-color: var(--wp--preset--color--error-500) !important; }
+.has-error-600-color { color: var(--wp--preset--color--error-600) !important; }
+.has-error-600-background-color { background-color: var(--wp--preset--color--error-600) !important; }
+.has-error-600-border-color { border-color: var(--wp--preset--color--error-600) !important; }
+.has-error-700-color { color: var(--wp--preset--color--error-700) !important; }
+.has-error-700-background-color { background-color: var(--wp--preset--color--error-700) !important; }
+.has-error-700-border-color { border-color: var(--wp--preset--color--error-700) !important; }
+.has-error-800-color { color: var(--wp--preset--color--error-800) !important; }
+.has-error-800-background-color { background-color: var(--wp--preset--color--error-800) !important; }
+.has-error-800-border-color { border-color: var(--wp--preset--color--error-800) !important; }
+.has-error-900-color { color: var(--wp--preset--color--error-900) !important; }
+.has-error-900-background-color { background-color: var(--wp--preset--color--error-900) !important; }
+.has-error-900-border-color { border-color: var(--wp--preset--color--error-900) !important; }
+.has-warning-25-color { color: var(--wp--preset--color--warning-25) !important; }
+.has-warning-25-background-color { background-color: var(--wp--preset--color--warning-25) !important; }
+.has-warning-25-border-color { border-color: var(--wp--preset--color--warning-25) !important; }
+.has-warning-50-color { color: var(--wp--preset--color--warning-50) !important; }
+.has-warning-50-background-color { background-color: var(--wp--preset--color--warning-50) !important; }
+.has-warning-50-border-color { border-color: var(--wp--preset--color--warning-50) !important; }
+.has-warning-100-color { color: var(--wp--preset--color--warning-100) !important; }
+.has-warning-100-background-color { background-color: var(--wp--preset--color--warning-100) !important; }
+.has-warning-100-border-color { border-color: var(--wp--preset--color--warning-100) !important; }
+.has-warning-200-color { color: var(--wp--preset--color--warning-200) !important; }
+.has-warning-200-background-color { background-color: var(--wp--preset--color--warning-200) !important; }
+.has-warning-200-border-color { border-color: var(--wp--preset--color--warning-200) !important; }
+.has-warning-300-color { color: var(--wp--preset--color--warning-300) !important; }
+.has-warning-300-background-color { background-color: var(--wp--preset--color--warning-300) !important; }
+.has-warning-300-border-color { border-color: var(--wp--preset--color--warning-300) !important; }
+.has-warning-400-color { color: var(--wp--preset--color--warning-400) !important; }
+.has-warning-400-background-color { background-color: var(--wp--preset--color--warning-400) !important; }
+.has-warning-400-border-color { border-color: var(--wp--preset--color--warning-400) !important; }
+.has-warning-500-color { color: var(--wp--preset--color--warning-500) !important; }
+.has-warning-500-background-color { background-color: var(--wp--preset--color--warning-500) !important; }
+.has-warning-500-border-color { border-color: var(--wp--preset--color--warning-500) !important; }
+.has-warning-600-color { color: var(--wp--preset--color--warning-600) !important; }
+.has-warning-600-background-color { background-color: var(--wp--preset--color--warning-600) !important; }
+.has-warning-600-border-color { border-color: var(--wp--preset--color--warning-600) !important; }
+.has-warning-700-color { color: var(--wp--preset--color--warning-700) !important; }
+.has-warning-700-background-color { background-color: var(--wp--preset--color--warning-700) !important; }
+.has-warning-700-border-color { border-color: var(--wp--preset--color--warning-700) !important; }
+.has-warning-800-color { color: var(--wp--preset--color--warning-800) !important; }
+.has-warning-800-background-color { background-color: var(--wp--preset--color--warning-800) !important; }
+.has-warning-800-border-color { border-color: var(--wp--preset--color--warning-800) !important; }
+.has-warning-900-color { color: var(--wp--preset--color--warning-900) !important; }
+.has-warning-900-background-color { background-color: var(--wp--preset--color--warning-900) !important; }
+.has-warning-900-border-color { border-color: var(--wp--preset--color--warning-900) !important; }
+.has-success-25-color { color: var(--wp--preset--color--success-25) !important; }
+.has-success-25-background-color { background-color: var(--wp--preset--color--success-25) !important; }
+.has-success-25-border-color { border-color: var(--wp--preset--color--success-25) !important; }
+.has-success-50-color { color: var(--wp--preset--color--success-50) !important; }
+.has-success-50-background-color { background-color: var(--wp--preset--color--success-50) !important; }
+.has-success-50-border-color { border-color: var(--wp--preset--color--success-50) !important; }
+.has-success-100-color { color: var(--wp--preset--color--success-100) !important; }
+.has-success-100-background-color { background-color: var(--wp--preset--color--success-100) !important; }
+.has-success-100-border-color { border-color: var(--wp--preset--color--success-100) !important; }
+.has-success-200-color { color: var(--wp--preset--color--success-200) !important; }
+.has-success-200-background-color { background-color: var(--wp--preset--color--success-200) !important; }
+.has-success-200-border-color { border-color: var(--wp--preset--color--success-200) !important; }
+.has-success-300-color { color: var(--wp--preset--color--success-300) !important; }
+.has-success-300-background-color { background-color: var(--wp--preset--color--success-300) !important; }
+.has-success-300-border-color { border-color: var(--wp--preset--color--success-300) !important; }
+.has-success-400-color { color: var(--wp--preset--color--success-400) !important; }
+.has-success-400-background-color { background-color: var(--wp--preset--color--success-400) !important; }
+.has-success-400-border-color { border-color: var(--wp--preset--color--success-400) !important; }
+.has-success-500-color { color: var(--wp--preset--color--success-500) !important; }
+.has-success-500-background-color { background-color: var(--wp--preset--color--success-500) !important; }
+.has-success-500-border-color { border-color: var(--wp--preset--color--success-500) !important; }
+.has-success-600-color { color: var(--wp--preset--color--success-600) !important; }
+.has-success-600-background-color { background-color: var(--wp--preset--color--success-600) !important; }
+.has-success-600-border-color { border-color: var(--wp--preset--color--success-600) !important; }
+.has-success-700-color { color: var(--wp--preset--color--success-700) !important; }
+.has-success-700-background-color { background-color: var(--wp--preset--color--success-700) !important; }
+.has-success-700-border-color { border-color: var(--wp--preset--color--success-700) !important; }
+.has-success-800-color { color: var(--wp--preset--color--success-800) !important; }
+.has-success-800-background-color { background-color: var(--wp--preset--color--success-800) !important; }
+.has-success-800-border-color { border-color: var(--wp--preset--color--success-800) !important; }
+.has-success-900-color { color: var(--wp--preset--color--success-900) !important; }
+.has-success-900-background-color { background-color: var(--wp--preset--color--success-900) !important; }
+.has-success-900-border-color { border-color: var(--wp--preset--color--success-900) !important; }
+.has-blue-50-color { color: var(--wp--preset--color--blue-50) !important; }
+.has-blue-50-background-color { background-color: var(--wp--preset--color--blue-50) !important; }
+.has-blue-50-border-color { border-color: var(--wp--preset--color--blue-50) !important; }
+.has-blue-500-color { color: var(--wp--preset--color--blue-500) !important; }
+.has-blue-500-background-color { background-color: var(--wp--preset--color--blue-500) !important; }
+.has-blue-500-border-color { border-color: var(--wp--preset--color--blue-500) !important; }
+.has-blue-700-color { color: var(--wp--preset--color--blue-700) !important; }
+.has-blue-700-background-color { background-color: var(--wp--preset--color--blue-700) !important; }
+.has-blue-700-border-color { border-color: var(--wp--preset--color--blue-700) !important; }
+.has-pink-50-color { color: var(--wp--preset--color--pink-50) !important; }
+.has-pink-50-background-color { background-color: var(--wp--preset--color--pink-50) !important; }
+.has-pink-50-border-color { border-color: var(--wp--preset--color--pink-50) !important; }
+.has-pink-500-color { color: var(--wp--preset--color--pink-500) !important; }
+.has-pink-500-background-color { background-color: var(--wp--preset--color--pink-500) !important; }
+.has-pink-500-border-color { border-color: var(--wp--preset--color--pink-500) !important; }
+.has-pink-700-color { color: var(--wp--preset--color--pink-700) !important; }
+.has-pink-700-background-color { background-color: var(--wp--preset--color--pink-700) !important; }
+.has-pink-700-border-color { border-color: var(--wp--preset--color--pink-700) !important; }
+.has-indigo-50-color { color: var(--wp--preset--color--indigo-50) !important; }
+.has-indigo-50-background-color { background-color: var(--wp--preset--color--indigo-50) !important; }
+.has-indigo-50-border-color { border-color: var(--wp--preset--color--indigo-50) !important; }
+.has-indigo-500-color { color: var(--wp--preset--color--indigo-500) !important; }
+.has-indigo-500-background-color { background-color: var(--wp--preset--color--indigo-500) !important; }
+.has-indigo-500-border-color { border-color: var(--wp--preset--color--indigo-500) !important; }
+.has-indigo-700-color { color: var(--wp--preset--color--indigo-700) !important; }
+.has-indigo-700-background-color { background-color: var(--wp--preset--color--indigo-700) !important; }
+.has-indigo-700-border-color { border-color: var(--wp--preset--color--indigo-700) !important; }
+.has-orange-50-color { color: var(--wp--preset--color--orange-50) !important; }
+.has-orange-50-background-color { background-color: var(--wp--preset--color--orange-50) !important; }
+.has-orange-50-border-color { border-color: var(--wp--preset--color--orange-50) !important; }
+.has-orange-500-color { color: var(--wp--preset--color--orange-500) !important; }
+.has-orange-500-background-color { background-color: var(--wp--preset--color--orange-500) !important; }
+.has-orange-500-border-color { border-color: var(--wp--preset--color--orange-500) !important; }
+.has-orange-700-color { color: var(--wp--preset--color--orange-700) !important; }
+.has-orange-700-background-color { background-color: var(--wp--preset--color--orange-700) !important; }
+.has-orange-700-border-color { border-color: var(--wp--preset--color--orange-700) !important; }
+.has-lime-50-color { color: var(--wp--preset--color--lime-50) !important; }
+.has-lime-50-background-color { background-color: var(--wp--preset--color--lime-50) !important; }
+.has-lime-50-border-color { border-color: var(--wp--preset--color--lime-50) !important; }
+.has-lime-300-color { color: var(--wp--preset--color--lime-300) !important; }
+.has-lime-300-background-color { background-color: var(--wp--preset--color--lime-300) !important; }
+.has-lime-300-border-color { border-color: var(--wp--preset--color--lime-300) !important; }
+.has-lime-500-color { color: var(--wp--preset--color--lime-500) !important; }
+.has-lime-500-background-color { background-color: var(--wp--preset--color--lime-500) !important; }
+.has-lime-500-border-color { border-color: var(--wp--preset--color--lime-500) !important; }
+.has-lime-700-color { color: var(--wp--preset--color--lime-700) !important; }
+.has-lime-700-background-color { background-color: var(--wp--preset--color--lime-700) !important; }
+.has-lime-700-border-color { border-color: var(--wp--preset--color--lime-700) !important; }
+.has-primary-25-color { color: var(--wp--preset--color--primary-25) !important; }
+.has-primary-25-background-color { background-color: var(--wp--preset--color--primary-25) !important; }
+.has-primary-25-border-color { border-color: var(--wp--preset--color--primary-25) !important; }
+.has-primary-50-color { color: var(--wp--preset--color--primary-50) !important; }
+.has-primary-50-background-color { background-color: var(--wp--preset--color--primary-50) !important; }
+.has-primary-50-border-color { border-color: var(--wp--preset--color--primary-50) !important; }
+.has-primary-100-color { color: var(--wp--preset--color--primary-100) !important; }
+.has-primary-100-background-color { background-color: var(--wp--preset--color--primary-100) !important; }
+.has-primary-100-border-color { border-color: var(--wp--preset--color--primary-100) !important; }
+.has-primary-200-color { color: var(--wp--preset--color--primary-200) !important; }
+.has-primary-200-background-color { background-color: var(--wp--preset--color--primary-200) !important; }
+.has-primary-200-border-color { border-color: var(--wp--preset--color--primary-200) !important; }
+.has-primary-300-color { color: var(--wp--preset--color--primary-300) !important; }
+.has-primary-300-background-color { background-color: var(--wp--preset--color--primary-300) !important; }
+.has-primary-300-border-color { border-color: var(--wp--preset--color--primary-300) !important; }
+.has-primary-400-color { color: var(--wp--preset--color--primary-400) !important; }
+.has-primary-400-background-color { background-color: var(--wp--preset--color--primary-400) !important; }
+.has-primary-400-border-color { border-color: var(--wp--preset--color--primary-400) !important; }
+.has-primary-500-color { color: var(--wp--preset--color--primary-500) !important; }
+.has-primary-500-background-color { background-color: var(--wp--preset--color--primary-500) !important; }
+.has-primary-500-border-color { border-color: var(--wp--preset--color--primary-500) !important; }
+.has-primary-600-color { color: var(--wp--preset--color--primary-600) !important; }
+.has-primary-600-background-color { background-color: var(--wp--preset--color--primary-600) !important; }
+.has-primary-600-border-color { border-color: var(--wp--preset--color--primary-600) !important; }
+.has-primary-700-color { color: var(--wp--preset--color--primary-700) !important; }
+.has-primary-700-background-color { background-color: var(--wp--preset--color--primary-700) !important; }
+.has-primary-700-border-color { border-color: var(--wp--preset--color--primary-700) !important; }
+.has-primary-800-color { color: var(--wp--preset--color--primary-800) !important; }
+.has-primary-800-background-color { background-color: var(--wp--preset--color--primary-800) !important; }
+.has-primary-800-border-color { border-color: var(--wp--preset--color--primary-800) !important; }
+.has-primary-900-color { color: var(--wp--preset--color--primary-900) !important; }
+.has-primary-900-background-color { background-color: var(--wp--preset--color--primary-900) !important; }
+.has-primary-900-border-color { border-color: var(--wp--preset--color--primary-900) !important; }
+.has-secondary-25-color { color: var(--wp--preset--color--secondary-25) !important; }
+.has-secondary-25-background-color { background-color: var(--wp--preset--color--secondary-25) !important; }
+.has-secondary-25-border-color { border-color: var(--wp--preset--color--secondary-25) !important; }
+.has-secondary-50-color { color: var(--wp--preset--color--secondary-50) !important; }
+.has-secondary-50-background-color { background-color: var(--wp--preset--color--secondary-50) !important; }
+.has-secondary-50-border-color { border-color: var(--wp--preset--color--secondary-50) !important; }
+.has-secondary-100-color { color: var(--wp--preset--color--secondary-100) !important; }
+.has-secondary-100-background-color { background-color: var(--wp--preset--color--secondary-100) !important; }
+.has-secondary-100-border-color { border-color: var(--wp--preset--color--secondary-100) !important; }
+.has-secondary-200-color { color: var(--wp--preset--color--secondary-200) !important; }
+.has-secondary-200-background-color { background-color: var(--wp--preset--color--secondary-200) !important; }
+.has-secondary-200-border-color { border-color: var(--wp--preset--color--secondary-200) !important; }
+.has-secondary-300-color { color: var(--wp--preset--color--secondary-300) !important; }
+.has-secondary-300-background-color { background-color: var(--wp--preset--color--secondary-300) !important; }
+.has-secondary-300-border-color { border-color: var(--wp--preset--color--secondary-300) !important; }
+.has-secondary-400-color { color: var(--wp--preset--color--secondary-400) !important; }
+.has-secondary-400-background-color { background-color: var(--wp--preset--color--secondary-400) !important; }
+.has-secondary-400-border-color { border-color: var(--wp--preset--color--secondary-400) !important; }
+.has-secondary-500-color { color: var(--wp--preset--color--secondary-500) !important; }
+.has-secondary-500-background-color { background-color: var(--wp--preset--color--secondary-500) !important; }
+.has-secondary-500-border-color { border-color: var(--wp--preset--color--secondary-500) !important; }
+.has-secondary-600-color { color: var(--wp--preset--color--secondary-600) !important; }
+.has-secondary-600-background-color { background-color: var(--wp--preset--color--secondary-600) !important; }
+.has-secondary-600-border-color { border-color: var(--wp--preset--color--secondary-600) !important; }
+.has-secondary-700-color { color: var(--wp--preset--color--secondary-700) !important; }
+.has-secondary-700-background-color { background-color: var(--wp--preset--color--secondary-700) !important; }
+.has-secondary-700-border-color { border-color: var(--wp--preset--color--secondary-700) !important; }
+.has-secondary-800-color { color: var(--wp--preset--color--secondary-800) !important; }
+.has-secondary-800-background-color { background-color: var(--wp--preset--color--secondary-800) !important; }
+.has-secondary-800-border-color { border-color: var(--wp--preset--color--secondary-800) !important; }
+.has-secondary-900-color { color: var(--wp--preset--color--secondary-900) !important; }
+.has-secondary-900-background-color { background-color: var(--wp--preset--color--secondary-900) !important; }
+.has-secondary-900-border-color { border-color: var(--wp--preset--color--secondary-900) !important; }
+.has-accent-25-color { color: var(--wp--preset--color--accent-25) !important; }
+.has-accent-25-background-color { background-color: var(--wp--preset--color--accent-25) !important; }
+.has-accent-25-border-color { border-color: var(--wp--preset--color--accent-25) !important; }
+.has-accent-50-color { color: var(--wp--preset--color--accent-50) !important; }
+.has-accent-50-background-color { background-color: var(--wp--preset--color--accent-50) !important; }
+.has-accent-50-border-color { border-color: var(--wp--preset--color--accent-50) !important; }
+.has-accent-100-color { color: var(--wp--preset--color--accent-100) !important; }
+.has-accent-100-background-color { background-color: var(--wp--preset--color--accent-100) !important; }
+.has-accent-100-border-color { border-color: var(--wp--preset--color--accent-100) !important; }
+.has-accent-200-color { color: var(--wp--preset--color--accent-200) !important; }
+.has-accent-200-background-color { background-color: var(--wp--preset--color--accent-200) !important; }
+.has-accent-200-border-color { border-color: var(--wp--preset--color--accent-200) !important; }
+.has-accent-300-color { color: var(--wp--preset--color--accent-300) !important; }
+.has-accent-300-background-color { background-color: var(--wp--preset--color--accent-300) !important; }
+.has-accent-300-border-color { border-color: var(--wp--preset--color--accent-300) !important; }
+.has-accent-400-color { color: var(--wp--preset--color--accent-400) !important; }
+.has-accent-400-background-color { background-color: var(--wp--preset--color--accent-400) !important; }
+.has-accent-400-border-color { border-color: var(--wp--preset--color--accent-400) !important; }
+.has-accent-500-color { color: var(--wp--preset--color--accent-500) !important; }
+.has-accent-500-background-color { background-color: var(--wp--preset--color--accent-500) !important; }
+.has-accent-500-border-color { border-color: var(--wp--preset--color--accent-500) !important; }
+.has-accent-600-color { color: var(--wp--preset--color--accent-600) !important; }
+.has-accent-600-background-color { background-color: var(--wp--preset--color--accent-600) !important; }
+.has-accent-600-border-color { border-color: var(--wp--preset--color--accent-600) !important; }
+.has-accent-700-color { color: var(--wp--preset--color--accent-700) !important; }
+.has-accent-700-background-color { background-color: var(--wp--preset--color--accent-700) !important; }
+.has-accent-700-border-color { border-color: var(--wp--preset--color--accent-700) !important; }
+.has-accent-800-color { color: var(--wp--preset--color--accent-800) !important; }
+.has-accent-800-background-color { background-color: var(--wp--preset--color--accent-800) !important; }
+.has-accent-800-border-color { border-color: var(--wp--preset--color--accent-800) !important; }
+.has-accent-900-color { color: var(--wp--preset--color--accent-900) !important; }
+.has-accent-900-background-color { background-color: var(--wp--preset--color--accent-900) !important; }
+.has-accent-900-border-color { border-color: var(--wp--preset--color--accent-900) !important; }

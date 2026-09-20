@@ -1,0 +1,51 @@
+/**
+ * Blocklane — core/list block style variations.
+ *
+ * Loaded on demand via wp_enqueue_block_style() in inc/assets.php; only
+ * emitted on pages where a list block renders.
+ *
+ * @package blocklane
+ * @since   0.6.4
+ */
+
+/* Checks — feature lists whose markers are check glyphs in soft primary
+ * circles. Marker content has no theme.json representation, so the whole
+ * treatment lives here; colors fall back through the palette so the list
+ * still reads on themes without the primary ramp. */
+.wp-block-list.is-style-checks,
+.is-style-pricing-card .wp-block-list {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.wp-block-list.is-style-checks > li,
+.is-style-pricing-card .wp-block-list > li {
+	position: relative;
+	padding-left: 2.25rem;
+	color: var(--wp--preset--color--gray-600, #475467);
+	line-height: 1.5;
+}
+
+.wp-block-list.is-style-checks > li + li,
+.is-style-pricing-card .wp-block-list > li + li {
+	margin-top: 1rem;
+}
+
+.wp-block-list.is-style-checks > li::before,
+.is-style-pricing-card .wp-block-list > li::before {
+	content: "\2713";
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 999px;
+	background-color: var(--wp--preset--color--primary-100, #e5eefe);
+	color: var(--wp--preset--color--primary-600, #1a58e4);
+	font-size: 0.875rem;
+	font-weight: 700;
+}

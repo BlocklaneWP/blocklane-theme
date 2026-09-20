@@ -1,0 +1,40 @@
+/**
+ * Blocklane — core/details block style variations.
+ *
+ * Loaded on demand via wp_enqueue_block_style() in inc/assets.php; only
+ * emitted on pages where a details block renders.
+ *
+ * @package blocklane
+ * @since   0.5.0
+ */
+
+/* The Boxed style replaces the native triangle marker with a
+ * right-aligned + that flips to − while open. It lives here because
+ * pseudo-element content has no theme.json representation; the Boxed
+ * container look is `style_data` in inc/block-styles.php.
+ *
+ * Child combinators throughout so a details nested inside the revealed
+ * content keeps its own (native or styled) marker. */
+.wp-block-details.is-style-boxed > summary {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--30);
+	list-style: none;
+}
+
+/* Safari needed its own opt-out of the native marker until 18.4. */
+.wp-block-details.is-style-boxed > summary::-webkit-details-marker {
+	display: none;
+}
+
+.wp-block-details.is-style-boxed > summary::after {
+	content: "+";
+	color: var(--wp--preset--color--primary);
+	font-weight: 600;
+	flex: none;
+}
+
+.wp-block-details.is-style-boxed[open] > summary::after {
+	content: "−";
+}

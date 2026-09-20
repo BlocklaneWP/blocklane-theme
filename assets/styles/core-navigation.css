@@ -1,0 +1,219 @@
+/**
+ * Blocklane — core/navigation link hover / focus states.
+ *
+ * Loaded on demand via wp_enqueue_block_style() in inc/assets.php; only
+ * emitted on pages where a navigation block renders.
+ *
+ * Why a stylesheet and not theme.json: core's navigation stylesheet forces
+ * link color to `inherit` with a deliberately doubled-class selector
+ * (`.wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-item__content`,
+ * specificity 0-3-0) so a link's resting color always tracks the nav's text
+ * color. Every theme.json style path (elements.link, the `css` property) is
+ * wrapped by WordPress in `:where()` (specificity 0-1-0), so it can never
+ * override that inherit rule for the hover state. The selectors below carry
+ * their own weight (0-4-1) and win outright, independent of load order.
+ *
+ * @package blocklane
+ * @since   0.4.0
+ */
+
+/* Light-ground navs (e.g. the header): shift to the brand color on hover.
+ * primary (#1a58e4) clears WCAG AA against the base / subtle page grounds. */
+.wp-block-navigation:not(.has-base-color) a.wp-block-navigation-item__content:hover,
+.wp-block-navigation:not(.has-base-color) a.wp-block-navigation-item__content:focus {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Dark-ground navs (e.g. the footer, which sets textColor:base → white text
+ * on the contrast background). A mid-tone brand hover would fall below WCAG
+ * AA on that dark ground, so keep the light text at its 21:1 contrast and
+ * signal the hover with an underline instead. */
+.wp-block-navigation.has-base-color a.wp-block-navigation-item__content:hover,
+.wp-block-navigation.has-base-color a.wp-block-navigation-item__content:focus {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+/* ---------------------------------------------------------------------
+ * Mobile overlay: the header keeps its own logo.
+ *
+ * The header's Navigation block opens core's custom overlay (WP 7.0+, the
+ * `overlay` attribute pointing at the Navigation Overlay template part).
+ * That overlay is `position: fixed` at z-index 100000 INSIDE the navigation
+ * block, so it covers the header row it belongs to. Rather than render a
+ * second Site Logo inside the overlay, lift the header's own logo above it:
+ * the overlay part paints a band with the header's geometry (see
+ * parts/navigation-overlay.html) and the logo shows through where it is.
+ *
+ * CONTRACT (what makes the lift hold; read before restructuring the header):
+ * the logo and the overlay must resolve in the SAME stacking context. Shared
+ * ancestors are fine (a sticky header group at z-index 10, a pinned <header>
+ * wrapper at z-index 100): both elements sit inside them. What breaks it is
+ * a NEW stacking context between the logo and their nearest shared ancestor:
+ * a positioned z-index, transform, filter, opacity below 1, isolation,
+ * will-change or contain:paint on the navbar row, or on any wrapper the logo
+ * gets moved into. The lift then paints under the overlay with no error.
+ * _shots/overlay-lift-check.mjs asserts it on the live site.
+ *
+ * Gate: the site header PART (`header.wp-block-template-part`, the
+ * template part rendered with the header element — not any Group an author
+ * set to <header> mid-page) whose nav has opened a CUSTOM overlay that
+ * carries the theme's Header band (`.blocklane-overlay-band`, parts/navigation-
+ * overlay.html) with the Navigation Overlay Close block inside it. Core's
+ * default overlay has no band, so lifting the logo over it would float it
+ * across the menu; a custom overlay without the band has no marker that its
+ * author placed the close block in the header's spot — a part customized
+ * before 0.10.0 (its own Site Logo beside the close block) keeps its
+ * pre-0.10.0 look untouched. Every rule on the open button is scoped to the
+ * ONE navigation whose container is open (`.wp-block-navigation:has(> …)`
+ * → `> .wp-block-navigation__responsive-container-open`): a second nav in
+ * the same header keeps its own hamburger. Static and sticky headers alike:
+ * assets/js/navigation-overlay.js lines the band up with wherever the
+ * header sits on open (it scrolls a partly scrolled static header back into
+ * view, hands the remaining vertical offset to --blocklane-overlay-shift,
+ * and moves the close block onto the hamburger's rect with
+ * --blocklane-overlay-close-dx/dy, read below).
+ *
+ * Outside the guarantee, on purpose:
+ * - The Transparent Header extension's absolute/fixed group. Its group is
+ *   still a shared ancestor, so the lift should hold. Unverified; check
+ *   before relying on it.
+ * - `.is-menu-open` exists only after hydration. The lift is a client-only
+ *   state on purpose: the overlay it lifts over cannot open without JS.
+ * ------------------------------------------------------------------- */
+header.wp-block-template-part:has(.wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close) :is(.wp-block-site-logo, .wp-block-site-title):not(.wp-block-navigation__responsive-container *),
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open {
+	position: relative;
+	/* One above core's overlay (blocks/navigation/style.css: `.is-menu-open { z-index: 100000 }`). */
+	z-index: 100001;
+}
+
+/* The hamburger twists into the close icon.
+ *
+ * Core renders two separate controls: the open button (outside the overlay)
+ * and the Navigation Overlay Close block (inside it, which the overlay part
+ * places at the hamburger's exact coordinates). The morph is visual only:
+ * the hamburger is lifted with the logo (the rule above), its two SVG bars
+ * rotate into an X in place while the icon turns a quarter turn, and it
+ * stops taking pointer events so a tap lands on the close block beneath it.
+ * The close block stays the real control: focus lands on it when the
+ * overlay opens, its focus ring draws around the X, and its own icon is
+ * simply transparent. Semantics are core's, untouched.
+ *
+ * Morph gate: both controls must be icons (the open button has an <svg>,
+ * the close block is icon-only) and belong to the SAME navigation. A text
+ * "Menu" / "Close" pair falls back to the crossfade below. The bar geometry
+ * comes from core's two icons in blocks/navigation.php: "handle" (2 bars at
+ * y 7.5 and 15, 16 wide) and "menu" (3 bars at y 5, 11.3 and 17.5, 14
+ * wide); the translate carries each outer bar to the 12,12 center and
+ * scaleX stretches it to the close icon's arm length. Rotation is a
+ * transition on the paths, so it plays in both directions; motion only
+ * outside prefers-reduced-motion, as core does. The hamburger is never
+ * `visibility: hidden`: core focuses it synchronously on close, before the
+ * class flips back, and a hidden element refuses focus. It sits outside the
+ * overlay's `aria-modal` dialog and Tab trap, so it is unreachable by
+ * keyboard while the overlay is open. */
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open {
+	pointer-events: none;
+}
+/* State-free (the band is in the server DOM before any open): the origin and
+ * the transitions below must exist in BOTH states — a transition starts from
+ * the after-change style, so a gate that left with `is-menu-open` would make
+ * every close snap, and a pivot that left with it would swing the bars out
+ * of the box on the way back. Still per navigation: the band's presence. */
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open > svg > path {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+/* Morph: the hamburger's bars become the X, the close block's icon goes clear. */
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child {
+	opacity: 0;
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg {
+	transform: rotate(90deg);
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg > path:first-child:nth-last-child(2) {
+	transform: translateY(3.75px) rotate(45deg) scaleX(1.3);
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg > path:last-child:nth-child(2) {
+	transform: translateY(-3.75px) rotate(-45deg) scaleX(1.3);
+}
+/* The three-bar "menu" icon: outer bars travel farther, the middle one folds away. */
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg > path:first-child:nth-last-child(3) {
+	transform: translateY(6.25px) rotate(45deg) scaleX(1.5);
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg > path:last-child:nth-child(3) {
+	transform: translateY(-6.25px) rotate(-45deg) scaleX(1.5);
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child) > .wp-block-navigation__responsive-container-open > svg > path:nth-child(2):nth-last-child(2) {
+	opacity: 0;
+	transform: scaleX(0);
+}
+/* Fallback when either control is text: the hamburger fades out and the close
+ * block fades into its place (the overlay's own fade keyframe, 0.25s). Opacity only, on purpose: the close block is
+ * the element the script measures on open and the element that carries the
+ * dx/dy translate, and an animated transform (fill-mode both) would both skew
+ * that measure at progress 0 and outrank the translate for the open's
+ * lifetime — the same rule that keeps the overlay's own reveal a fade. */
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):not(:has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child)) > .wp-block-navigation__responsive-container-open {
+	opacity: 0;
+}
+header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):not(:has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child)) > .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close {
+	animation: blocklane-overlay-fade 0.25s ease-out both;
+}
+
+/* Custom overlays only: core's reveal also slides the whole overlay up
+ * 0.5em, which would drag the band's border out from under the still logo.
+ * Keep the fade, drop the slide, so the band appears in place. */
+.wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open {
+	animation-name: blocklane-overlay-fade;
+}
+@keyframes blocklane-overlay-fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	/* The fallback's fade-in of the close block is still a 0.25s animation: none at all here. */
+	header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close):not(:has(> .wp-block-navigation__responsive-container-open > svg):has(> .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close > svg:only-child)) > .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close {
+		animation: none;
+	}
+}
+@media not (prefers-reduced-motion) {
+	header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open {
+		transition: opacity 0.2s ease-in;
+	}
+	header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open > svg {
+		transition: transform 0.3s ease-in-out;
+	}
+	header.wp-block-template-part .wp-block-navigation:has(> .wp-block-navigation__responsive-container.disable-default-overlay .blocklane-overlay-band .wp-block-navigation-overlay-close) > .wp-block-navigation__responsive-container-open > svg > path {
+		transition: transform 0.3s ease-in-out, opacity 0.2s ease;
+	}
+}
+
+/* Where the band starts, and where its close block lands.
+ * assets/js/navigation-overlay.js measures the hamburger against the close
+ * block on every open and writes the vertical difference to
+ * --blocklane-overlay-shift on the responsive container (the dialog's top
+ * margin, so the band meets the header wherever it sits: under the admin
+ * bar, under a top bar, or a static header the visitor had scrolled a
+ * little), then the residual x/y between the two controls to
+ * --blocklane-overlay-close-dx/dy (a translate on the close block, so a
+ * header with different side padding, justification or direction than the
+ * band still puts the real control under the drawn X). Without the script
+ * the fallback mirrors what core does for its DEFAULT overlay (a fixed
+ * admin-bar margin on the dialog, scoped `:not(.disable-default-overlay)`
+ * in core, so custom overlays get none of it): the height var
+ * admin-bar.css sets on <html>. */
+.wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .wp-block-navigation__responsive-dialog {
+	margin-top: var(--blocklane-overlay-shift, 0px);
+}
+.has-modal-open .admin-bar .wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .wp-block-navigation__responsive-dialog {
+	margin-top: var(--blocklane-overlay-shift, var(--wp-admin--admin-bar--height, 0px));
+}
+.wp-block-navigation__responsive-container.disable-default-overlay.is-menu-open .blocklane-overlay-band .wp-block-navigation-overlay-close {
+	transform: translate(var(--blocklane-overlay-close-dx, 0px), var(--blocklane-overlay-close-dy, 0px));
+}

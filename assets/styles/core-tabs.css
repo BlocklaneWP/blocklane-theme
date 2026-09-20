@@ -1,0 +1,230 @@
+/**
+ * Blocklane — core/tabs block style variations.
+ *
+ * Loaded on demand via wp_enqueue_block_style() in inc/assets.php; only
+ * emitted on pages where a tabs block renders.
+ *
+ * @package blocklane
+ * @since   0.6.4
+ */
+
+/* Segmented — the segmented billing toggle: the tab list sits in a
+ * gray-50 box with a hairline border, each tab is a pill, and the selected
+ * tab surfaces white with a soft shadow. Selection state is aria-driven,
+ * which has no theme.json representation, so the whole treatment lives
+ * here. */
+.wp-block-tabs.is-style-segmented:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list {
+	display: flex;
+	width: fit-content;
+	margin-inline: auto;
+	margin-block-end: 2rem;
+}
+
+/* The segmented DRESSING stays unguarded (issue #409): in a both-classes
+ * block the theme still dresses the rail — box, hairline, padding, pill
+ * gap — while Pro owns the tracks, per the precedence doctrine below. */
+.wp-block-tabs.is-style-segmented > .wp-block-tab-list {
+	gap: 0.25rem;
+	padding: 0.25rem;
+	background-color: var(--wp--preset--color--gray-50, #f9fafb);
+	border: 1px solid var(--wp--preset--color--gray-100, #f2f4f7);
+	border-radius: 0.5rem;
+	box-shadow: none;
+}
+
+.wp-block-tabs.is-style-segmented > .wp-block-tab-list > [role="tab"] {
+	padding: 0.5rem 1rem;
+	border: 0;
+	border-radius: 0.375rem;
+	background: transparent;
+	color: var(--wp--preset--color--gray-500, #667085);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	cursor: pointer;
+}
+
+/* Core underlines the active tab with a ::before rule — the pill IS the
+   selection state here, so the underline goes. Guarded like the vertical
+   pair (issue #405): Pro's rotated indicator restyles core's ::before box,
+   so an unguarded content:none would kill it on a both-classes block. */
+.wp-block-tabs.is-style-segmented:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list > [role="tab"][aria-selected="true"]::before {
+	content: none;
+}
+
+.wp-block-tabs.is-style-segmented > .wp-block-tab-list > [role="tab"][aria-selected="true"],
+.wp-block-tabs.is-style-segmented > .wp-block-tab-list > [role="tab"].is-active {
+	background-color: var(--wp--preset--color--white, #fff);
+	color: var(--wp--preset--color--gray-700, #344054);
+	box-shadow: var(--wp--preset--shadow--x-small, 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06));
+}
+
+/* Vertical — the locations rail: rail and panes sit side by side
+ * (1:2, the source's .5fr/1fr), the rail is a flush stack of left-bordered
+ * entries, and the active entry's border turns primary. Selection state is
+ * aria-driven, which has no theme.json representation, so the whole
+ * treatment lives here. Stacks to a single column on small screens like
+ * the source (767px).
+ *
+ * PRECEDENCE (issues #371/#388/#389/#392/#405/#409): every STRUCTURAL rule
+ * in this file — the vertical/vertical-reverse grids, tracks, placement,
+ * rail direction, the segmented rail's sizing, and ALL THREE
+ * active-indicator content:none rules (vertical, vertical-reverse,
+ * segmented) — withdraws ONLY when the block carries a Pro position
+ * class AND Pro is actually present: the guard is
+ * :not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]).
+ * The guard adds (0,2,1) to each rule's specificity (the :not takes its
+ * most specific argument, the complex `:is(...) [class*=...]`) — factor
+ * that in before adding competing rules. Its :not(<complex>) grammar is
+ * Selectors 4 (Chrome/Edge 88+, Firefox 84+); the project's browserslist
+ * floor is Chrome 109, so that is in contract (issue #422, accepted).
+ * body.blocklane-pro-tabs is stamped by Pro's advanced-tabs loader whenever
+ * the plugin is active (so Pro DEACTIVATED hands the layout back to the
+ * theme instead of to nothing), and .editor-styles-wrapper covers the
+ * editor canvas. Cosmetic per-entry rules (padding, borders, active color)
+ * and the segmented rail DRESSING stay unguarded on purpose: in a
+ * both-classes block the theme still dresses the rail while Pro owns the
+ * tracks. The description reveal that used to live at the end of this file
+ * is Pro-owned now (issue #370) — do not reintroduce a theme copy. */
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	gap: 4rem;
+	align-items: stretch;
+}
+
+/* The style owns the vertical FLIP only (core locks tab-list orientation,
+ * so it can't come from the editor); justification and block spacing stay
+ * the editor's. The editor's justification classes are translated into
+ * the column axis so the toolbar control keeps working. */
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list {
+	flex-direction: column;
+	/* the rail's DEFAULT anchor (core's tab list centers); any editor
+	 * justification below overrides it. */
+	align-items: flex-start;
+}
+
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list.is-content-justification-center {
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list.is-content-justification-right {
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list.is-content-justification-left {
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.wp-block-tabs.is-style-vertical > .wp-block-tab-list > [role="tab"] {
+	text-align: left;
+	padding: 1.5rem 0 1.5rem 2rem;
+	border: 0;
+	border-left: 4px solid var(--wp--preset--color--gray-100, #f2f4f7);
+	border-radius: 0;
+	background: transparent;
+	color: var(--wp--preset--color--gray-900, #101828);
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.5;
+	cursor: pointer;
+}
+
+/* The left border IS the selection state — core's underline goes. */
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list > [role="tab"][aria-selected="true"]::before {
+	content: none;
+}
+
+.wp-block-tabs.is-style-vertical > .wp-block-tab-list > [role="tab"][aria-selected="true"],
+.wp-block-tabs.is-style-vertical > .wp-block-tab-list > [role="tab"].is-active {
+	border-left-color: var(--wp--preset--color--primary-600, #1a58e4);
+}
+
+.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-panels {
+	min-width: 0;
+}
+
+@media (max-width: 767px) {
+	.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 3rem;
+	}
+
+	.wp-block-tabs.is-style-vertical:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list > [role="tab"] {
+		padding-left: 1.5rem;
+	}
+}
+
+/* Vertical Reversed — the switcher arrangement: media in the wide LEFT
+ * track, rail on the right (Elementor/Relume's side order). The rail
+ * entries keep the vertical style's own treatment; only the tracks and
+ * their placement differ. Tab list is DOM-first for a11y, so the swap is
+ * grid placement, never markup order. */
+.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	gap: 4rem;
+	align-items: stretch;
+}
+
+.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list {
+	grid-column: 2;
+	grid-row: 1;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-panels {
+	grid-column: 1;
+	grid-row: 1;
+	min-width: 0;
+}
+
+.wp-block-tabs.is-style-vertical-reverse > .wp-block-tab-list > [role="tab"] {
+	text-align: left;
+	padding: 1.5rem 0 1.5rem 2rem;
+	border: 0;
+	border-left: 4px solid var(--wp--preset--color--gray-100, #f2f4f7);
+	border-radius: 0;
+	background: transparent;
+	color: var(--wp--preset--color--gray-900, #101828);
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.5;
+	cursor: pointer;
+}
+
+.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list > [role="tab"][aria-selected="true"]::before {
+	content: none;
+}
+
+.wp-block-tabs.is-style-vertical-reverse > .wp-block-tab-list > [role="tab"][aria-selected="true"],
+.wp-block-tabs.is-style-vertical-reverse > .wp-block-tab-list > [role="tab"].is-active {
+	border-left-color: var(--wp--preset--color--primary-600, #1a58e4);
+}
+
+@media (max-width: 767px) {
+	.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 3rem;
+	}
+
+	/* One column: sources come back in DOM order (rail above media). */
+	.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list {
+		grid-column: 1;
+		grid-row: auto;
+		padding-left: 0;
+	}
+
+	.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-panels {
+		grid-column: 1;
+		grid-row: auto;
+	}
+
+	.wp-block-tabs.is-style-vertical-reverse:not(:is(body.blocklane-pro-tabs, .editor-styles-wrapper) [class*="has-blocklane-tab-list-"]) > .wp-block-tab-list > [role="tab"] {
+		padding-left: 1.5rem;
+	}
+}

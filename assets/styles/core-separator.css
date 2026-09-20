@@ -1,0 +1,17 @@
+/**
+ * Blocklane — core/separator block style variations.
+ *
+ * Loaded on demand via wp_enqueue_block_style() in functions.php; only
+ * emitted on pages where a separator block renders.
+ *
+ * @package blocklane
+ * @since   0.3.0
+ */
+
+/* Wide — full-content-width page break. Core separator defaults to a
+ * narrow fixed width; theme.json's border / color style_data covers
+ * the stroke but the width override is not a theme.json property. */
+.wp-block-separator.is-style-wide {
+	max-width: 100%;
+	width: 100%;
+}

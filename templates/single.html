@@ -1,0 +1,38 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|50"}},"layout":{"type":"default"}} -->
+<main class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--90)">
+	<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull">
+		<!-- wp:breadcrumbs {"separator":"›"} /-->
+
+		<!-- wp:post-featured-image {"aspectRatio":"16/9","align":"wide","style":{"border":{"radius":"var:preset|border-radius|md"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} /-->
+
+		<!-- wp:post-title {"level":1,"fontSize":"heading-xx-large"} /-->
+
+		<!-- wp:template-part {"slug":"post-meta","tagName":"div"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:post-content {"align":"full","layout":{"type":"constrained"}} /-->
+
+	<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull">
+		<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"className":"is-style-wide"} -->
+		<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide" style="margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70)"/>
+		<!-- /wp:separator -->
+
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+		<div class="wp-block-group">
+			<!-- wp:post-navigation-link {"type":"previous","showTitle":true,"arrow":"arrow","fontSize":"small"} /-->
+			<!-- wp:post-navigation-link {"showTitle":true,"arrow":"arrow","fontSize":"small"} /-->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:template-part {"slug":"comments"} /-->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
