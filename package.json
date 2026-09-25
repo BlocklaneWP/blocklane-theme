@@ -1,26 +1,12 @@
 {
     "name": "blocklane-theme",
-    "version": "0.10.3",
-    "description": "Blocklane \u2014 WordPress Full Site Editing block theme. Core-blocks only. Design-token driven.",
-    "author": "Garrett Johnson <garrett@modifymedia.com>",
-    "license": "GPL-2.0-or-later",
+    "version": "4.5.6",
     "scripts": {
         "a11y:scan": "node tools/a11y-scan.mjs",
-        "a11y:contrast": "node tools/contrast-matrix.mjs",
-        "screenshot": "node tools/capture-screenshot.mjs"
+        "screenshot": "node tools/capture-screenshot.mjs",
+        "lint:css": "stylelint --config=bin/stylelint.json assets/css/*.css",
+        "check": "npm run a11y:scan && npm run makepot",
+        "a11y:all": "npm run a11y:scan"
     },
-    "devDependencies": {
-        "@wordpress/scripts": "^34.2.0",
-        "axe-core": "^4.11.3",
-        "playwright": "^1.59.1"
-    },
-    "overrides": {
-        "qs": "^6.16.0",
-        "uuid": "^11.1.1",
-        "serialize-javascript": "^7.0.5",
-        "markdown-it": "^14.2.0",
-        "linkify-it": "^5.0.2",
-        "@opentelemetry/core": "^2.8.0",
-        "minimatch@<3.1.4": "^3.1.5"
-    }
+    "dependencies": []
 }
